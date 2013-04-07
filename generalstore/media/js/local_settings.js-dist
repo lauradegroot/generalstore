@@ -1,9 +1,29 @@
 define([],
   function () {
-
   'use strict';
 
+  var player;
+
+  var defaults = {
+    level: 1,
+    items: [],
+    inventory: []
+  };
+
+  if (!localStorage.getItem('player')) {
+    localStorage.setItem('player', JSON.stringify(defaults));
+
+  } else {
+    try {
+      user = JSON.parse(localStorage.getItem('player'));
+    } catch (err) {
+      alert('Error loading configuration file! Resetting to defaults');
+      localStorage.setItem('player', JSON.stringify(defaults));
+    }
+  }
+
   return {
-    DEBUG: true
+    DEBUG: true,
+    player: player
   };
 });

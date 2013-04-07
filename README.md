@@ -49,3 +49,7 @@ If you need to override generalstore/media/js/settings.js, create generalstore/m
         DEBUG: true
       };
     });
+
+## Running tests
+
+Load `generalstore/test/tests.html` in a browser

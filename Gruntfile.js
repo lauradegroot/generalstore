@@ -1,9 +1,19 @@
 module.exports = function(grunt) {
 
   var JS_FILE_PATH = 'generalstore/media/js/';
+  var JS_TEST_PATH = 'generalstore/test/';
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    jshint: {
+      all: [
+        'Gruntfile.js',
+        JS_FILE_PATH + 'base/*.js',
+        JS_FILE_PATH + 'main.js',
+        JS_TEST_PATH + 'main.js',
+        JS_TEST_PATH + 'test.*.js'
+      ]
+    },
     concat: {
       options: {
         separator: ';'
@@ -26,16 +36,20 @@ module.exports = function(grunt) {
     cssmin: {
       compress: {
         files: {
-          'generalstore/media/css/main-min.css': ['media/css/main.css']
+          'generalstore/media/css/main-min.css': [
+            'generalstore/media/css/reset.css',
+            'generalstore/media/css/main.css'
+          ]
         }
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask('default', ['cssmin', 'requirejs', 'concat']);
+  grunt.registerTask('default', ['jshint', 'cssmin', 'requirejs', 'concat']);
 };
