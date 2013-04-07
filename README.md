@@ -25,6 +25,7 @@ If you are on production and have precompiled your templates, use [nunjucks.js](
 ## Precompiling templates for nunjucks
 
 In development mode, make sure generalstore/media/js/templates.js only has the following:
+
     define(function() {});
 
 In production mode, run the following:
