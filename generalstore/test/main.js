@@ -1,7 +1,3 @@
-require.config({
-  baseUrl:'.'
-});
-
 require(['require', 'lib/chai', 'lib/mocha'], function (require, chai) {
   assert = chai.assert;
   should = chai.should();
@@ -12,5 +8,4 @@ require(['require', 'lib/chai', 'lib/mocha'], function (require, chai) {
   require(['test.user'], function (user) {
     mocha.run();
   });
-
 });

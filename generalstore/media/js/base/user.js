@@ -3,6 +3,7 @@ define([],
   'use strict';
 
   var player;
+  var keyName = 'player';
 
   var defaults = {
     level: 1,
@@ -11,14 +12,16 @@ define([],
   };
 
   var loadUser = function () {
-    return JSON.parse(localStorage.getItem('player'));
+    return JSON.parse(localStorage.getItem(keyName));
   };
 
-  var User = function () {
-    var player;
+  var User = function (options) {
+    if (options.env) {
+      keyName = keyName + '_' + options.env;
+    }
 
-    if (!localStorage.getItem('player')) {
-      localStorage.setItem('player', JSON.stringify(defaults));
+    if (!localStorage.getItem(keyName)) {
+      localStorage.setItem(keyName, JSON.stringify(defaults));
       player = loadUser();
 
     } else {
@@ -27,7 +30,7 @@ define([],
 
       } catch (err) {
         console.error('Error loading configuration file! Resetting to defaults');
-        localStorage.setItem('player', JSON.stringify(defaults));
+        localStorage.setItem(keyName, JSON.stringify(defaults));
         player = loadUser();
       }
     }
@@ -38,11 +41,11 @@ define([],
   };
 
   User.prototype.save = function () {
-    localStorage.setItem('player', JSON.stringify(this));
+    localStorage.setItem(keyName, JSON.stringify(this));
   };
 
   User.prototype.reset = function () {
-    localStorage.removeItem('player');
+    localStorage.removeItem(keyName);
     this.level = defaults.level;
     this.items = defaults.items;
     this.inventory = defaults.inventory;

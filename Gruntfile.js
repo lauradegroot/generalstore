@@ -42,6 +42,20 @@ module.exports = function(grunt) {
           ]
         }
       }
+    },
+    watch: {
+      scripts: {
+        files: [
+          JS_FILE_PATH + 'base/*.js',
+          JS_FILE_PATH + 'main.js',
+          'generalstore/media/css/*.css'
+        ],
+        tasks: ['jshint', 'cssmin', 'requirejs', 'concat'],
+        options: {
+          nospawn: true,
+          event: ['added', 'deleted', 'changed']
+        }
+      }
     }
   });
 

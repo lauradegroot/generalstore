@@ -2,7 +2,11 @@ define(['../media/js/base/user'],
   function (User) {
   'use strict';
 
-  var user = new User();
+  var options = {
+    env: 'test'
+  };
+
+  var user = new User(options);
 
   describe('User', function () {
     afterEach(function () {
@@ -18,7 +22,7 @@ define(['../media/js/base/user'],
 
     it('should be initialized for a failed setting on an existing user', function (done) {
       localStorage.setItem('player', 'invalidjson');
-      user = new User();
+      user = new User(options);
       expect(user).to.be.a('object');
       expect(user.level).to.equal(1);
       expect(user.inventory).to.have.length(0);
