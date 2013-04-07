@@ -10,7 +10,7 @@ define([],
     inventory: []
   };
 
-  var _loadUser = function () {
+  var loadUser = function () {
     return JSON.parse(localStorage.getItem('player'));
   };
 
@@ -19,16 +19,16 @@ define([],
 
     if (!localStorage.getItem('player')) {
       localStorage.setItem('player', JSON.stringify(defaults));
-      player = _loadUser();
+      player = loadUser();
 
     } else {
       try {
-        player = _loadUser();
+        player = loadUser();
 
       } catch (err) {
         console.error('Error loading configuration file! Resetting to defaults');
         localStorage.setItem('player', JSON.stringify(defaults));
-        player = _loadUser();
+        player = loadUser();
       }
     }
 
