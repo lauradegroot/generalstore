@@ -17,15 +17,17 @@ define(['../media/js/base/user'],
       expect(user).to.be.a('object');
       expect(user.level).to.equal(1);
       expect(user.inventory).to.have.length(0);
+      expect(user.items).to.have.length(0);
       done();
     });
 
     it('should be initialized for a failed setting on an existing user', function (done) {
-      localStorage.setItem('player', 'invalidjson');
+      localStorage.setItem('player_test', '{invalidjson');
       user = new User(options);
       expect(user).to.be.a('object');
       expect(user.level).to.equal(1);
       expect(user.inventory).to.have.length(0);
+      expect(user.items).to.have.length(0);
       done();
     });
 

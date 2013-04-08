@@ -1,4 +1,6 @@
 {
-    "screenWidth": 800,
-    "screenHeight": 400
+    "maxScreenWidth": 800,
+    "maxScreenHeight": 400,
+    "minScreenWidth": 320,
+    "minScreenHeight": 480
 }
