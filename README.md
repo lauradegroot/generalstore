@@ -8,6 +8,14 @@ A 2D adventure game maker.
 
 Install [node](http://nodejs.org)
 
+Clone the repository
+
+> git clone git://github.com/ednapiranha/generalstore.git
+
+> cd generalstore
+
+> cp local.json-dist local.json
+
 > npm install
 
 ## Setting up nunjucks
@@ -49,6 +57,16 @@ If you need to override generalstore/media/js/settings.js, create generalstore/m
         DEBUG: true
       };
     });
+
+## Run the development site
+
+> node app.js
+
+## Ready to deploy as a finished standalone package?
+
+You only need the contents within generalstore/generalstore (e.g. config/, media/, templates/, main.html).
+
+After precompiling nunjucks to templates.js and minifying with grunt, main.html should work as is.
 
 ## Running tests
 
