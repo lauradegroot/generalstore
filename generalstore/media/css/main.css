@@ -1,4 +1,30 @@
 body {
-    background-color: #111;
-    color: #fff;
+    background-color: #eee;
+    color: #344347;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.error {
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: #ddd 1px 0 2px;
+    border-radius: 2px;
+    margin: 0 auto;
+    max-width: 800px;
+    min-width: 240px;
+    padding: 20px;
+    text-align: center;
+    width: 70%;
+}
+
+.error h1 {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+.error p {
+    color: #d41010;
+    font-size: 16px;
+    line-height: 25px;
 }
