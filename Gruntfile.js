@@ -48,6 +48,7 @@ module.exports = function(grunt) {
         files: [
           JS_FILE_PATH + 'base/*.js',
           JS_FILE_PATH + 'main.js',
+          JS_FILE_PATH + 'utils.js',
           'generalstore/media/css/*.css'
         ],
         tasks: ['jshint', 'cssmin', 'requirejs', 'concat'],

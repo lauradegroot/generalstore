@@ -1,5 +1,7 @@
+local.json
 node_modules
 local_settings.js
 nunjucks.js
 generalstore/media/js/build
 generalstore/media/css/*-min.css
+generalstore/config/*.json
