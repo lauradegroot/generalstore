@@ -5,6 +5,14 @@ body {
     margin: 20px;
 }
 
+.debugger .game-wrapper {
+    border: 2px solid #13b2d9;
+}
+
+.game-wrapper {
+    position: relative;
+}
+
 .error {
     background-color: rgba(255, 255, 255, 0.6);
     box-shadow: #ddd 1px 0 2px;
@@ -27,4 +35,14 @@ body {
     color: #d41010;
     font-size: 16px;
     line-height: 25px;
+}
+
+.game-content {
+    position: absolute;
+}
+
+.debugger .game-content {
+    background-repeat: no-repeat;
+    left: -2px;
+    top: -2px;
 }

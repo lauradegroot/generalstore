@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>General Store</title>
+    <title>{% block title %}General Store{% endblock %}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta content="width=device-width" height="device-height" user-scalable="no"
           initial-scale="1.0" maximum-scale="1.0" minimum-scale="1.0" name="viewport">
@@ -14,7 +14,7 @@
       <link rel="stylesheet" href="media/css/main-min.css">
     {% endif %}
   </head>
-  <body>
+  <body class="debugger">
     <div id="wrapper"></div>
     {% if debug %}
       <script src="media/js/require.js" data-main="media/js/config"></script>
