@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 
   var JS_FILE_PATH = 'generalstore/media/js/';
   var JS_TEST_PATH = 'generalstore/test/';
+  var CSS_FILE_PATH = 'generalstore/media/css/';
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -37,8 +38,9 @@ module.exports = function(grunt) {
       compress: {
         files: {
           'generalstore/media/css/main-min.css': [
-            'generalstore/media/css/reset.css',
-            'generalstore/media/css/main.css'
+            CSS_FILE_PATH + 'reset.css',
+            CSS_FILE_PATH + 'main.css',
+            CSS_FILE_PATH + 'custom.css'
           ]
         }
       }
@@ -49,7 +51,7 @@ module.exports = function(grunt) {
           JS_FILE_PATH + 'base/*.js',
           JS_FILE_PATH + 'main.js',
           JS_FILE_PATH + 'utils.js',
-          'generalstore/media/css/*.css'
+          CSS_FILE_PATH + '*.css'
         ],
         tasks: ['jshint', 'cssmin', 'requirejs', 'concat'],
         options: {

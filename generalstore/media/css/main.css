@@ -5,12 +5,13 @@ body {
     margin: 20px;
 }
 
-.debugger .game-wrapper {
-    border: 2px solid #13b2d9;
+.game-wrapper {
+    border: 2px solid transparent;
+    position: relative;
 }
 
-.game-wrapper {
-    position: relative;
+.debugger .game-wrapper {
+    border: 2px solid #13b2d9;
 }
 
 .error {
