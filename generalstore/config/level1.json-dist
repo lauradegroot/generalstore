@@ -1,5 +1,17 @@
 {
     "level": 1,
     "location": "Name of your location",
-    "backgroundImage": "<background-image.jpg>"
+    "backgroundImage": "background-image.jpg",
+    "description": "Some description of the level or location",
+    "characters": [
+        {
+            "name": "Bear",
+            "image": "bear.png",
+            "left": 100,
+            "top": 400,
+            "requirement": false,
+            "message": "Hello world!",
+            "inventory": "cat"
+        }
+    ]
 }

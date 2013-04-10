@@ -10,8 +10,9 @@ body {
     position: relative;
 }
 
-.debugger .game-wrapper {
-    border: 2px solid #13b2d9;
+.debugger .game-wrapper, .debugger .character,
+.debugger #message {
+    border: 2px solid #1af7ff;
 }
 
 .error {
@@ -39,11 +40,49 @@ body {
 }
 
 .game-content {
+    bottom: 0;
+    left: 0;
     position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .debugger .game-content {
     background-repeat: no-repeat;
     left: -2px;
     top: -2px;
+}
+
+.description {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #555;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.character {
+    border: 2px solid transparent;
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+}
+
+#message {
+    transition: opacity 0.3s ease-in-out;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid transparent;
+    bottom: 0;
+    font-size: 16px;
+    left: 0;
+    line-height: 20px;
+    opacity: 0;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    z-index: 3;
+}
+
+#message.on {
+    opacity: 1;
 }

@@ -46,7 +46,14 @@ define(['jquery', 'local_settings', 'base/user', 'utils', 'nunjucks', 'templates
     var self = $(ev.target);
 
     switch (self.data('action')) {
-
+      case 'character':
+        var message = self.attr('data-message');
+        if (message.trim().length > 0) {
+          body.find('#message')
+              .text(message)
+              .addClass('on');
+        }
+        break;
     }
   });
 });
