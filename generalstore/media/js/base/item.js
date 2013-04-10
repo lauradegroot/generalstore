@@ -17,9 +17,9 @@ define([],
     }
   };
 
-  Item.prototype.setLevel = function (item, user) {
-    if (item.triggerLevel && user.level < item.triggerLevel) {
-      user.level = item.triggerLevel;
+  Item.prototype.setLevel = function (level, user) {
+    if (level && user.level < level) {
+      user.level = level;
       user.save();
       return true;
     }

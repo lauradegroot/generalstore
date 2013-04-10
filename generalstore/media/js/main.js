@@ -85,8 +85,10 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         break;
 
       case 'item':
+        var requirement = self.attr('data-requirement');
+
         if (!requirement || (requirement && user.hasInventory(requirement))) {
-          item.setLevel(self, user);
+          item.setLevel(self.attr('data-trigger'), user);
         }
         currLevel = user.level;
         setLevel();
