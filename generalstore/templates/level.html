@@ -1,14 +1,23 @@
-<div class="game-wrapper level-{{ data.level.level }}"
+<div class="game-wrapper level-{{ data.level }}"
      style="width: {{ data.defaults.width }}px; height: {{ data.defaults.height }}px;
-            background-image: url(media/images/backgrounds/{{ data.level.backgroundImage }});">
+            background-image: url(media/images/backgrounds/{{ data.backgroundImage }});">
   <div class="game-content">
     {% if data.defaults.showDescription %}
-      <div class="description">{{ data.level.description }}</div>
+      <div class="description">{{ data.description }}</div>
     {% endif %}
-    {% for character in data.level.characters %}
+    {% for item in data.items %}
+      <img src="media/images/items/{{ item.image }}" data-action="item"
+           class="item" id="{{ item.id }}"
+           style="left: {{ item.left }}px; top: {{ item.top }}px;"
+           data-message="{{ item.message }}" data-inventory="{{ item.inventory }}"
+           data-requirement="{{ item.requirement }}" data-trigger="{{ item.triggerLevel }}">
+    {% endfor %}
+    {% for character in data.characters %}
       <img src="media/images/characters/{{ character.image }}" data-action="character"
-           class="character" style="left: {{ character.left }}px; top: {{ character.top }}px;"
-           data-message="{{ character.message }}" data-inventory="{{ character.inventory }}">
+           class="character" id="{{ character.id }}"
+           style="left: {{ character.left }}px; top: {{ character.top }}px;"
+           data-message="{{ character.message }}" data-inventory="{{ character.inventory }}"
+           data-requirement="{{ character.requirement }}">
     {% endfor %}
     <div id="message"></div>
   </div>

@@ -6,12 +6,16 @@ body {
 }
 
 .game-wrapper {
-    border: 2px solid transparent;
     position: relative;
 }
 
-.debugger .game-wrapper, .debugger .character,
-.debugger #message {
+.description, .game-wrapper, .character,
+#message, .item {
+    border: 2px solid transparent;
+}
+
+.debugger .description, .debugger .game-wrapper,
+.debugger .character, .debugger #message, .debugger .item {
     border: 2px solid #1af7ff;
 }
 
@@ -47,12 +51,6 @@ body {
     top: 0;
 }
 
-.debugger .game-content {
-    background-repeat: no-repeat;
-    left: -2px;
-    top: -2px;
-}
-
 .description {
     background-color: rgba(255, 255, 255, 0.5);
     color: #555;
@@ -60,18 +58,19 @@ body {
     padding: 20px;
 }
 
-.character {
-    border: 2px solid transparent;
-    cursor: pointer;
+.character, .item {
     position: absolute;
     z-index: 2;
+}
+
+.active {
+    cursor: pointer;
 }
 
 #message {
     transition: opacity 0.3s ease-in-out;
     -webkit-transition: opacity 0.3s ease-in-out;
     background-color: rgba(255, 255, 255, 0.5);
-    border: 2px solid transparent;
     bottom: 0;
     font-size: 16px;
     left: 0;

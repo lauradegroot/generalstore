@@ -9,9 +9,29 @@
             "image": "bear.png",
             "left": 100,
             "top": 400,
-            "requirement": false,
+            "requirement": "",
             "message": "Hello world!",
             "inventory": "cat"
+        },
+        {
+            "name": "Dog",
+            "image": "dog.png",
+            "left": 300,
+            "top": 300,
+            "requirement": "cat",
+            "message": "I like cats!",
+            "inventory": "pencil"
+        }
+    ],
+    "items": [
+        {
+            "name": "car",
+            "image": "car.png",
+            "left": 400,
+            "top": 400,
+            "requirement": "cat",
+            "inventory": "",
+            "triggerLevel": 2
         }
     ]
 }

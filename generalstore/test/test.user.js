@@ -41,5 +41,17 @@ define(['../media/js/base/user'],
       expect(user.inventory).to.deep.equal(['test-item']);
       done();
     });
+
+    it('should have inventory item', function (done) {
+      user.inventory.push('chair');
+      user.save();
+      expect(user.hasInventory('chair')).to.equal(true);
+      done();
+    });
+
+    it('should not have inventory item', function (done) {
+      expect(user.hasInventory('table')).to.equal(false);
+      done();
+    });
   });
 });

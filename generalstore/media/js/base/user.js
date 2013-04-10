@@ -40,6 +40,10 @@ define([],
     this.inventory = player.inventory;
   };
 
+  User.prototype.hasInventory = function (inventory) {
+    return this.inventory.indexOf(inventory) > -1;
+  };
+
   User.prototype.save = function () {
     localStorage.setItem(keyName, JSON.stringify(this));
   };
