@@ -27,7 +27,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
   var setLevel = function () {
     var level = parseInt(currLevel, 10);
     // We always assume at least a first level for gameplay if the user has nothing stored
-    $.getJSON('../config/level' + level + '.json', function (d) {
+    $.getJSON('config/level' + level + '.json', function (d) {
       currLevel = d;
 
       for (var i = 0; i < currLevel; i ++) {
@@ -59,7 +59,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
   };
 
   // We need dimensions for our game background images
-  $.getJSON('../config/defaults.json', function (d) {
+  $.getJSON('config/defaults.json', function (d) {
     defaults = d;
     setLevel();
   }).fail(function (err) {
