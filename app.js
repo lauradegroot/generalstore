@@ -6,12 +6,24 @@ var nconf = require('nconf');
 var settings = require('./settings')(app, configurations, express);
 var nunjucks = require('nunjucks');
 var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('views'));
+var parser = require('./lib/parser');
 
 env.express(app);
 nconf.argv().env().file({ file: 'local.json' });
 
 app.get('/', function (req, res) {
   res.render('index.html');
+});
+
+app.get('/generate', function (req, res) {
+  parser.run(function (err, stories) {
+    if (err) {
+      throw new Error(err);
+    } else {
+      console.log(stories)
+      res.render('script.html', { stories: stories });
+    }
+  });
 });
 
 app.listen(process.env.PORT || nconf.get('port'));
