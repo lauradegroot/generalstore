@@ -10,6 +10,7 @@
             "top": 400,
             "requirement": "",
             "message": "Hello world!",
+            "endMessage": "...",
             "inventory": "cat"
         },
         "1-dog": {
@@ -18,6 +19,7 @@
             "top": 300,
             "requirement": "cat",
             "message": "I like cats!",
+            "endMessage": "boop.",
             "inventory": "pencil"
         }
     },

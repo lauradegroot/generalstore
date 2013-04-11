@@ -15,7 +15,6 @@ define([],
    * Set the active character
    */
   Character.prototype.active = function (id) {
-
     if (this.all[id]) {
       this.current = this.all[id];
     } else {
@@ -29,8 +28,9 @@ define([],
    * @param {object} user Current player
    */
   Character.prototype.setInventory = function (inventory, user) {
-    if (!!inventory && !user.hasInventory(inventory)) {
+    if (!!inventory && !user.hasInventory(inventory) && !user.hasCollection(inventory)) {
       user.inventory.push(inventory);
+      user.collection.push(inventory);
       user.save();
     }
   };

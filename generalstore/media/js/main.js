@@ -27,7 +27,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
   var setLevel = function () {
     var level = parseInt(currLevel, 10);
     // We always assume at least a first level for gameplay if the user has nothing stored
-    $.getJSON('config/level' + level + '.json', function (d) {
+    $.getJSON('../config/level' + level + '.json', function (d) {
       currLevel = d;
 
       for (var i = 0; i < currLevel; i ++) {
@@ -59,7 +59,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
   };
 
   // We need dimensions for our game background images
-  $.getJSON('config/defaults.json', function (d) {
+  $.getJSON('../config/defaults.json', function (d) {
     defaults = d;
     setLevel();
   }).fail(function (err) {
@@ -84,15 +84,22 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
       case 'character':
         character.active(self[0].id);
         var requirement = character.current.requirement;
+        var inventory = character.current.inventory;
 
         if (!requirement || (requirement && user.hasInventory(requirement))) {
           var message = character.current.message;
+
+          if (user.hasCollection(inventory)) {
+            message = character.current.endMessage;
+          } else {
+            character.setInventory(inventory, user);
+          }
+
           if (message.trim().length > 0) {
             body.find('#message')
                 .text(message)
                 .addClass('on');
           }
-          character.setInventory(character.current.inventory, user);
         }
         break;
 
@@ -103,8 +110,11 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         if (!requirement || (requirement && user.hasInventory(requirement))) {
           item.setLevel(item.current.triggerLevel, user);
         }
-        currLevel = user.level;
-        setLevel();
+
+        if (user.level !== currLevel) {
+          currLevel = user.level;
+          setLevel();
+        }
         break;
     }
   });
