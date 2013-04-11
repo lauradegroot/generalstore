@@ -5,19 +5,15 @@
     {% if data.defaults.showDescription %}
       <div class="description">{{ data.description }}</div>
     {% endif %}
-    {% for item in data.items %}
-      <img src="media/images/items/{{ item.image }}" data-action="item"
-           class="item" id="{{ item.id }}"
-           style="left: {{ item.left }}px; top: {{ item.top }}px;"
-           data-message="{{ item.message }}" data-inventory="{{ item.inventory }}"
-           data-requirement="{{ item.requirement }}" data-trigger="{{ item.triggerLevel }}">
+    {% for k, v in data.items %}
+      <img src="media/images/items/{{ data.items[k].image }}" data-action="item"
+           class="item" id="{{ k }}"
+           style="left: {{ data.items[k].left }}px; top: {{ data.items[k].top }}px;">
     {% endfor %}
-    {% for character in data.characters %}
-      <img src="media/images/characters/{{ character.image }}" data-action="character"
-           class="character" id="{{ character.id }}"
-           style="left: {{ character.left }}px; top: {{ character.top }}px;"
-           data-message="{{ character.message }}" data-inventory="{{ character.inventory }}"
-           data-requirement="{{ character.requirement }}">
+    {% for k, v in data.characters %}
+      <img src="media/images/characters/{{ data.characters[k].image }}" data-action="character"
+           class="character" id="{{ k }}"
+           style="left: {{ data.characters[k].left }}px; top: {{ data.characters[k].top }}px;">
     {% endfor %}
     <div id="message"></div>
   </div>

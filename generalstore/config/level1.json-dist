@@ -3,9 +3,8 @@
     "location": "Name of your location",
     "backgroundImage": "background-image.jpg",
     "description": "Some description of the level or location",
-    "characters": [
-        {
-            "name": "Bear",
+    "characters": {
+        "1-bear": {
             "image": "bear.png",
             "left": 100,
             "top": 400,
@@ -13,25 +12,23 @@
             "message": "Hello world!",
             "inventory": "cat"
         },
-        {
-            "name": "Dog",
+        "1-dog": {
             "image": "dog.png",
-            "left": 300,
+            "left": 330,
             "top": 300,
             "requirement": "cat",
             "message": "I like cats!",
             "inventory": "pencil"
         }
-    ],
-    "items": [
-        {
-            "name": "car",
+    },
+    "items": {
+        "1-car": {
             "image": "car.png",
-            "left": 400,
+            "left": 500,
             "top": 400,
-            "requirement": "cat",
+            "requirement": "pencil",
             "inventory": "",
             "triggerLevel": 2
         }
-    ]
+    }
 }

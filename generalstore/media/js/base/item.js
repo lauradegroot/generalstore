@@ -7,22 +7,18 @@ define([],
    * @constructor
    */
   var Item = function () {
-    this.items = [];
+    this.all;
+    this.current = null;
   };
 
   /**
-   * Loads item properties
-   * @param {number} level Item level
-   * @param {object} items All items
+   * Set the active item
    */
-  Item.prototype.load = function (level, items) {
-    for (var i = 0; i < items.length; i ++) {
-      try {
-        items[i].id = level + '-' + items[i].name;
-        this.items.push(items[i]);
-      } catch (err) {
-        throw new Error(err);
-      }
+  Item.prototype.active = function (id) {
+    if (this.all[id]) {
+      this.current = this.all[id];
+    } else {
+      throw new Error('Could not load item by id.');
     }
   };
 

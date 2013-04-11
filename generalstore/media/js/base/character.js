@@ -7,22 +7,19 @@ define([],
    * @constructor
    */
   var Character = function () {
-    this.characters = [];
+    this.all;
+    this.current = null;
   };
 
   /**
-   * Loads character properties
-   * @param {number} level Character level
-   * @param {object} characters All characters
+   * Set the active character
    */
-  Character.prototype.load = function (level, characters) {
-    for (var i = 0; i < characters.length; i ++) {
-      try {
-        characters[i].id = level + '-' + characters[i].name;
-        this.characters.push(characters[i]);
-      } catch (err) {
-        throw new Error(err);
-      }
+  Character.prototype.active = function (id) {
+
+    if (this.all[id]) {
+      this.current = this.all[id];
+    } else {
+      throw new Error('Could not load character by id.');
     }
   };
 

@@ -34,8 +34,8 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         setClickable(currLevel[i]);
       }
 
-      item.load(currLevel.level, currLevel.items);
-      character.load(currLevel.level, currLevel.characters);
+      item.all = currLevel.items;
+      character.all = currLevel.characters;
 
       title.text(currLevel.location);
 
@@ -45,12 +45,14 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         backgroundImage: currLevel.backgroundImage,
         description: currLevel.description,
         location: currLevel.location,
-        items: item.items,
-        characters: character.characters,
+        items: item.all,
+        characters: character.all,
         defaults: defaults
       });
     }).fail(function (err) {
-      var error = 'No level' + level + '.json configuration file found! Please create one in the config directory';
+      var error = 'No level' + level + '.json configuration file found! Resetting user data. ' +
+        'Please create one in the config directory';
+      user.reset();
       utils.loadTemplate('error.html', { message: error });
       throw new Error(error);
     });
@@ -80,24 +82,26 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         break;
 
       case 'character':
-        var requirement = self.attr('data-requirement');
+        character.active(self[0].id);
+        var requirement = character.current.requirement;
 
         if (!requirement || (requirement && user.hasInventory(requirement))) {
-          var message = self.attr('data-message');
+          var message = character.current.message;
           if (message.trim().length > 0) {
             body.find('#message')
                 .text(message)
                 .addClass('on');
           }
-          character.setInventory(self.attr('data-inventory'), user);
+          character.setInventory(character.current.inventory, user);
         }
         break;
 
       case 'item':
-        var requirement = self.attr('data-requirement');
+        item.active(self[0].id);
+        var requirement = item.current.requirement;
 
         if (!requirement || (requirement && user.hasInventory(requirement))) {
-          item.setLevel(self.attr('data-trigger'), user);
+          item.setLevel(item.current.triggerLevel, user);
         }
         currLevel = user.level;
         setLevel();
