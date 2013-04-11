@@ -3,8 +3,9 @@
 {% block content %}
   <div class="story-content">
     <h1>Your Game Story</h1>
+
     {% for story in stories %}
-      <article>{{ story.json }}</article>
+      <article>{{ story.location }}</article>
     {% endfor %}
   </div>
 {% endblock %}
