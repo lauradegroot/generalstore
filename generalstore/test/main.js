@@ -5,7 +5,9 @@ require(['require', 'lib/chai', 'lib/mocha'], function (require, chai) {
 
   mocha.setup('bdd');
 
-  require(['test.user'], function (user) {
+  require(
+    ['test.user', 'test.item', 'test.character'],
+    function (user, item, character) {
     mocha.run();
   });
 });

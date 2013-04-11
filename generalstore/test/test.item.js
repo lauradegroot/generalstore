@@ -1,5 +1,5 @@
-define(['../media/js/base/item'],
-  function (Item) {
+define(['../media/js/base/item', '../media/js/base/user'],
+  function (Item, User) {
   'use strict';
 
   var options = {
@@ -9,16 +9,24 @@ define(['../media/js/base/item'],
   var user = new User(options);
   var item = new Item();
 
-  describe('User', function () {
+  describe('Item', function () {
     afterEach(function () {
       user.reset();
     });
 
-    it('should be initialized for a new user', function (done) {
-      expect(user).to.be.a('object');
+    it('should be load items', function (done) {
+      var items = ['keys', 'car', 'pencil'];
+      item.load(1, items);
+
+      expect(item.items).to.deep.equal(items);
+      expect(item.items).to.have.length(3);
+      done();
+    });
+
+    it('should set user level', function (done) {
       expect(user.level).to.equal(1);
-      expect(user.inventory).to.have.length(0);
-      expect(user.items).to.have.length(0);
+      item.setLevel(2, user);
+      expect(user.level).to.equal(2);
       done();
     });
   });
