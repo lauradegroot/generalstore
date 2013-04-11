@@ -70,6 +70,15 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
     var self = $(ev.target);
 
     switch (self.data('action')) {
+      case 'debug-toggle':
+        body.toggleClass('debugger');
+        if (self.text() === 'Disable debugger') {
+          self.text('Enable debugger');
+        } else {
+          self.text('Disable debugger');
+        }
+        break;
+
       case 'character':
         var requirement = self.attr('data-requirement');
 
