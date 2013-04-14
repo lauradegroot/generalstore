@@ -6,12 +6,12 @@
       <div class="description">{{ data.description }}</div>
     {% endif %}
     {% for k, v in data.items %}
-      <img src="media/images/items/{{ data.items[k].image }}" data-action="item"
+      <img src="media/images/items/{{ k }}.png" data-action="item"
            class="item" id="{{ k }}"
            style="left: {{ data.items[k].left }}px; top: {{ data.items[k].top }}px;">
     {% endfor %}
     {% for k, v in data.characters %}
-      <img src="media/images/characters/{{ data.characters[k].image }}" data-action="character"
+      <img src="media/images/characters/{{ k }}.png" data-action="character"
            class="character" id="{{ k }}"
            style="left: {{ data.characters[k].left }}px; top: {{ data.characters[k].top }}px;">
     {% endfor %}

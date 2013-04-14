@@ -42,7 +42,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
       // Load initial screen
       utils.loadTemplate('level.html', {
         level: currLevel.level,
-        backgroundImage: currLevel.backgroundImage,
+        backgroundImage: currLevel.background_image,
         description: currLevel.description,
         location: currLevel.location,
         items: item.all,
@@ -85,14 +85,14 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
 
       case 'character':
         character.active(self[0].id);
-        requirement = character.current.requirement;
-        inventory = character.current.inventory;
+        requirement = character.current.requires;
+        inventory = character.current.gives;
 
         if (!requirement || (requirement && user.hasInventory(requirement))) {
-          var message = character.current.message;
+          var message = character.current.first_says;
 
           if (user.hasCollection(inventory)) {
-            message = character.current.endMessage;
+            message = character.current.finally_says;
           } else {
             character.setInventory(inventory, user);
           }
@@ -107,10 +107,11 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
 
       case 'item':
         item.active(self[0].id);
-        requirement = item.current.requirement;
+        requirement = item.current.requires;
 
-        if (!requirement || (requirement && user.hasInventory(requirement))) {
-          item.setLevel(item.current.triggerLevel, user);
+        if (item.current.levels_up_to > 1 &&
+          (!requirement || (requirement && user.hasInventory(requirement)))) {
+          item.setLevel(item.current.levels_up_to, user);
         }
 
         if (user.level !== currLevel) {
