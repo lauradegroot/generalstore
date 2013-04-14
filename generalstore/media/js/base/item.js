@@ -17,11 +17,15 @@ define([],
    * @function
    * @param {string} id Unique id of the item
    */
-  Item.prototype.active = function (id) {
+  Item.prototype.active = function (id, callback) {
     if (this.all[id]) {
       this.current = this.all[id];
     } else {
       throw new Error('Could not load item by id.');
+    }
+
+    if (callback) {
+      callback();
     }
   };
 

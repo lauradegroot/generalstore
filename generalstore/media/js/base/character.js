@@ -16,11 +16,15 @@ define([],
    * @function
    * @name Character#active
    */
-  Character.prototype.active = function (id) {
+  Character.prototype.active = function (id, callback) {
     if (this.all[id]) {
       this.current = this.all[id];
     } else {
       throw new Error('Could not load character by id.');
+    }
+
+    if (callback) {
+      callback();
     }
   };
 
