@@ -82,6 +82,7 @@ Edit stories in a text editor with the following format:
 
     character
     name: partybear
+    image: partybear.png
     left: 100
     top: 400
     requires: false
@@ -91,13 +92,14 @@ Edit stories in a text editor with the following format:
 
     item
     name: car
+    image: car.gif
     left: 500
     top: 400
     requires: mango
     gives: gas
     levels_up_to: 2
 
-All character and item level and name properties are used to generate a unique id. E.g. A level 1 character with the name 'bunny' generates a unique id of 1-bunny. This id is the same one you have to use to name your character or item image in `generalstore/media/images/characters` and `generalstore/media/images/items`.
+All character and item level and name properties are used to generate a unique id. E.g. A level 1 character with the name 'bunny' generates a unique id of 1-bunny.
 
 The story properties represent the following:
 
@@ -106,7 +108,8 @@ The story properties represent the following:
 * background_image - The image used in the level's main background. If this is a png or gif, replace the extension.
 * description - An optional description of the location; write 'false' as the content if you want it to be empty. You can also configure generalstore/config/defaults.json to never show descriptions.
 * character - Contains the properties for each character. All properties are mandatory.
-* character name - Name of the character. The level and name generate a unique id and this will double as your character's image filename.
+* character name - Name of the character.
+* character image - Filename of the character image. Save the file in `generalstore/media/images/characters/`.
 * character left - Position of the character from the left. Set your game dimensions in generalstore/config/defaults.json
 * character top - Position of the character from the top.
 * character requires - If an inventory object is needed to be given to the character before an initial interaction is triggered, enter it here. Otherwise, write 'false'.
@@ -115,6 +118,7 @@ The story properties represent the following:
 * character finally_says - This is what the character says on subsequent interactions.
 * item - Contains the properties for each item. All properties are mandatory.
 * item name - Name of the item. The level and name generate a uniqud id and this will dobule as your item's image filename.
+* item image - Filename of the item image. Save the file in `generalstore/media/images/items/`.
 * item left - Position of the item from the left.
 * item top - Position of the item from the top.
 * item requires - If an inventory object is needed to trigger an item's response (especially if there is a `gives` or `levels_up_to` set), enter it here. Otherwise, write 'false'.

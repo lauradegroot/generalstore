@@ -83,6 +83,11 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         }
         break;
 
+      case 'reset-toggle':
+        user.reset();
+        document.location.href = '/';
+        break;
+
       case 'character':
         character.active(self[0].id);
         requirement = character.current.requires;

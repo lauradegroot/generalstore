@@ -12,6 +12,7 @@ Welcome to the land of fluffy clouds and happiness, a land we all know and love.
 
 character
 name: bear
+image: bear.png
 left: 100
 top: 400
 requires: false
@@ -21,6 +22,7 @@ gives: cat
 
 character
 name: dog
+image: dog.gif
 left: 330
 top: 300
 requires: cat
@@ -30,6 +32,7 @@ gives: keys
 
 item
 name: car
+image: car.png
 left: 500
 top: 400
 requires: keys
