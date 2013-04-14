@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/generate', function (req, res) {
-  parser.run(function (err, stories) {
+  parser.run({}, function (err, stories) {
     if (err) {
       throw new Error(err);
     } else {
