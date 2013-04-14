@@ -68,6 +68,8 @@ You only need the contents within generalstore/generalstore (e.g. config/, media
 
 After precompiling nunjucks to templates.js and minifying with grunt, main.html should work as is.
 
+Note that you must run this on some kind of webserver and point to main.html as the default landing page.
+
 ## Running tests
 
 Load `generalstore/test/tests.html` in a browser
