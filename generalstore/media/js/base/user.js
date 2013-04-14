@@ -74,6 +74,21 @@ define([],
     return this.collection.indexOf(inventory) > -1;
   };
 
+   /**
+   * Give inventory to character or item
+   * @name User#giveRequirement
+   * @function
+   * @param {object} obj Current character or item
+   */
+  User.prototype.giveRequirement = function (obj) {
+    var requirement = obj.requires;
+
+    if (this.hasInventory(requirement)) {
+      this.inventory.splice(this.inventory.indexOf(requirement), 1);
+      this.save();
+    }
+  };
+
   /**
    * Saves user's current game stats.
    * @name User#save

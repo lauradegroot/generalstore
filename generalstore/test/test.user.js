@@ -1,5 +1,5 @@
-define(['../media/js/base/user'],
-  function (User) {
+define(['../media/js/base/user', '../media/js/base/character'],
+  function (User, Character) {
   'use strict';
 
   var options = {
@@ -7,6 +7,7 @@ define(['../media/js/base/user'],
   };
 
   var user = new User(options);
+  var character = new Character();
 
   describe('User', function () {
     afterEach(function () {
@@ -46,6 +47,13 @@ define(['../media/js/base/user'],
       user.inventory.push('chair');
       user.save();
       expect(user.hasInventory('chair')).to.equal(true);
+      done();
+    });
+
+    it('should give a requirement to a character', function (done) {
+      character.requires = 'chair';
+      user.giveRequirement(character);
+      expect(user.hasInventory('chair')).to.equal(false);
       done();
     });
 

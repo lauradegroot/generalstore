@@ -2,7 +2,7 @@
      style="width: {{ data.defaults.width }}px; height: {{ data.defaults.height }}px;
             background-image: url(media/images/backgrounds/{{ data.backgroundImage }});">
   <div class="game-content">
-    {% if data.defaults.showDescription %}
+    {% if data.defaults.showDescription and data.description.length > 0 %}
       <div class="description">{{ data.description }}</div>
     {% endif %}
     {% for k, v in data.items %}

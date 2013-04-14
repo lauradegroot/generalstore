@@ -94,6 +94,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
           if (user.hasCollection(inventory)) {
             message = character.current.finally_says;
           } else {
+            user.giveRequirement(character);
             character.setInventory(inventory, user);
           }
 
@@ -108,6 +109,8 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
       case 'item':
         item.active(self[0].id);
         requirement = item.current.requires;
+
+        user.giveRequirement(item);
 
         if (item.current.levels_up_to > 1 &&
           (!requirement || (requirement && user.hasInventory(requirement)))) {

@@ -25,7 +25,8 @@ define([],
   };
 
   /**
-   * Set inventory for player
+   * Set inventory for player and take inventory from player if character requires
+   * it.
    * @name Character#setInventory
    * @function
    * @param {string} inventory Inventory name
