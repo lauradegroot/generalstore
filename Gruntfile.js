@@ -59,6 +59,14 @@ module.exports = function(grunt) {
           event: ['added', 'deleted', 'changed']
         }
       }
+    },
+    jsdoc : {
+      dist : {
+        src: ['lib/*.js', 'generalstore/media/js/base/*.js'],
+        options: {
+          destination: 'doc'
+        }
+      }
     }
   });
 
@@ -67,6 +75,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-jsdoc');
 
-  grunt.registerTask('default', ['jshint', 'cssmin', 'requirejs', 'concat']);
+  grunt.registerTask('default', ['jsdoc', 'jshint', 'cssmin', 'requirejs', 'concat']);
 };

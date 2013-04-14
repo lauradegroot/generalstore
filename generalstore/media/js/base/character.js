@@ -4,15 +4,17 @@ define([],
 
   /**
    * Create a character
+   * @name Character
    * @constructor
    */
   var Character = function () {
-    this.all;
     this.current = null;
   };
 
   /**
    * Set the active character
+   * @function
+   * @name Character#active
    */
   Character.prototype.active = function (id) {
     if (this.all[id]) {
@@ -24,6 +26,8 @@ define([],
 
   /**
    * Set inventory for player
+   * @name Character#setInventory
+   * @function
    * @param {string} inventory Inventory name
    * @param {object} user Current player
    */

@@ -70,6 +70,8 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
 
   body.on('click', function (ev) {
     var self = $(ev.target);
+    var requirement;
+    var inventory;
 
     switch (self.data('action')) {
       case 'debug-toggle':
@@ -83,8 +85,8 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
 
       case 'character':
         character.active(self[0].id);
-        var requirement = character.current.requirement;
-        var inventory = character.current.inventory;
+        requirement = character.current.requirement;
+        inventory = character.current.inventory;
 
         if (!requirement || (requirement && user.hasInventory(requirement))) {
           var message = character.current.message;
@@ -105,7 +107,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
 
       case 'item':
         item.active(self[0].id);
-        var requirement = item.current.requirement;
+        requirement = item.current.requirement;
 
         if (!requirement || (requirement && user.hasInventory(requirement))) {
           item.setLevel(item.current.triggerLevel, user);
