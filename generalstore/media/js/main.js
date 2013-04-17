@@ -46,6 +46,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         description: currLevel.description,
         location: currLevel.location,
         items: item.all,
+        inventory: user.inventory,
         characters: character.all,
         defaults: defaults
       });
@@ -126,6 +127,17 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
           currLevel = user.level;
           setLevel();
         }
+        break;
+
+      case 'inventory-show':
+        utils.loadTemplate('inventory.html', {
+          inventory: user.inventory
+        }, { wrapper: '#inventory-items' });
+        body.find('#inventory-screen').removeClass('hidden');
+        break;
+
+      case 'inventory-hide':
+        body.find('#inventory-screen').addClass('hidden');
         break;
     }
   });

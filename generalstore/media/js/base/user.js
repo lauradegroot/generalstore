@@ -15,8 +15,8 @@ define([],
   /**
    * Load the user's settings from localStorage
    */
-  var loadUser = function () {
-    return JSON.parse(localStorage.getItem(keyName));
+  var loadUser = function (self) {
+    return JSON.parse(localStorage.getItem(self.keyName));
   };
 
   /**
@@ -28,21 +28,21 @@ define([],
    */
   var User = function (options) {
     if (options.env) {
-      keyName = keyName + '_' + options.env;
+      this.keyName = keyName + '_' + options.env;
     }
 
-    if (!localStorage.getItem(keyName)) {
-      localStorage.setItem(keyName, JSON.stringify(defaults));
-      player = loadUser();
+    if (!localStorage.getItem(this.keyName)) {
+      localStorage.setItem(this.keyName, JSON.stringify(defaults));
+      player = loadUser(this);
 
     } else {
       try {
-        player = loadUser();
+        player = loadUser(this);
 
       } catch (err) {
         console.error('Error loading configuration file! Resetting to defaults');
-        localStorage.setItem(keyName, JSON.stringify(defaults));
-        player = loadUser();
+        localStorage.setItem(this.keyName, JSON.stringify(defaults));
+        player = loadUser(this);
       }
     }
 
@@ -95,7 +95,7 @@ define([],
    * @function
    */
   User.prototype.save = function () {
-    localStorage.setItem(keyName, JSON.stringify(this));
+    localStorage.setItem(this.keyName, JSON.stringify(this));
   };
 
   /**
@@ -104,7 +104,7 @@ define([],
    * @function
    */
   User.prototype.reset = function () {
-    localStorage.removeItem(keyName);
+    localStorage.removeItem(this.keyName);
     this.level = defaults.level;
     this.items = defaults.items;
     this.inventory = defaults.inventory;

@@ -6,8 +6,12 @@ define(['jquery', 'nunjucks', 'templates'],
   var notification = $('#notification');
 
   var self = {
-    loadTemplate: function (template, data) {
-      body.find('#wrapper').html(
+    loadTemplate: function (template, data, opts) {
+      var wrapper ='#wrapper';
+      if (opts) {
+        wrapper = opts.wrapper;
+      }
+      body.find(wrapper).html(
         nunjucks.env.getTemplate(template).render({ data: data.data || data })
       );
     },
