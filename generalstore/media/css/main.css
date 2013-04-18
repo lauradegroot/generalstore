@@ -146,7 +146,7 @@ a {
     z-index: 3;
 }
 
-#inventory span {
+#inventory span, #inventory-screen li span {
     background-color: #fff;
     border-radius: 3px;
     box-shadow: #111 1px 1px 1px;
@@ -164,7 +164,7 @@ a {
     opacity: 1;
 }
 
-#inventory:hover span {
+#inventory:hover span, #inventory-screen li:hover span {
     display: block;
 }
 
@@ -193,6 +193,22 @@ a {
     position: absolute;
     right: 10px;
     top: 10px;
+}
+
+#inventory-screen li {
+    background-color: #222;
+    border-radius: 5px;
+    float: left;
+    height: 100px;
+    margin: 10px;
+    padding: 5px;
+    position: relative;
+    width: 100px;
+}
+
+#inventory-screen li span {
+    top: 0;
+    left: 0;
 }
 
 .hidden {
