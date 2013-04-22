@@ -40,7 +40,7 @@ In production mode, run the following:
 
     node_modules/nunjucks/bin/precompile generalstore/templates > generalstore/media/js/templates.js
 
-## Minifying files with Grunt
+## Minifying files with Grunt in production
 
 > node_modules/grunt-cli/bin/grunt
 
