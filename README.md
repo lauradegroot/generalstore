@@ -24,7 +24,7 @@ This will allow you to compile your templates for production
 
 To read more about nunjucks, check out the [documentation](http://nunjucks.jlongster.com)
 
-Download nunjucks and add it to generalstore/media/js/lib/nunjucks.js
+Download nunjucks and add it to `generalstore/media/js/lib/nunjucks.js`
 
 If you are on development mode, use [nunjucks-dev.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks-dev.js)
 
@@ -32,7 +32,7 @@ If you are on production and have precompiled your templates, use [nunjucks.js](
 
 ## Precompiling templates for nunjucks
 
-In development mode, make sure generalstore/media/js/templates.js only has the following:
+In development mode, make sure `generalstore/media/js/templates.js` only has the following:
 
     define(function() {});
 
@@ -125,6 +125,8 @@ The story properties represent the following:
 * item gives - This is what the item provides the player either on initial interaction or if `requires` is fulfilled.
 * item levels_up_to - If `requires` is fulfilled for the item, the scene will change to the level set here.
 
+Once you've completed your txt files, run `http://localhost:3000/generate` in your browser to regenerate the configuration.
+
 ## Ready to deploy as a finished standalone package?
 
 You only need the contents within generalstore/generalstore (e.g. config/, media/, templates/, main.html).
@@ -134,5 +136,9 @@ After precompiling nunjucks to templates.js and minifying with grunt, main.html 
 Note that you must run this on some kind of webserver and point to main.html as the default landing page.
 
 ## Running tests
+
+> make test
+
+and also
 
 Load `generalstore/test/tests.html` in a browser
