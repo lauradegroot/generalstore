@@ -46,7 +46,7 @@ In production mode, run the following:
 
 ## Configure settings
 
-If you need to override generalstore/media/js/settings.js, create generalstore/media/js/local_settings.js and return the new values. For example:
+Create `generalstore/media/js/local_settings.js` and paste the following:
 
     define([],
       function () {
@@ -57,6 +57,8 @@ If you need to override generalstore/media/js/settings.js, create generalstore/m
         DEBUG: true
       };
     });
+
+If this is in production mode, change DEBUG to false.
 
 ## Run the development site
 
@@ -125,7 +127,7 @@ The story properties represent the following:
 * item gives - This is what the item provides the player either on initial interaction or if `requires` is fulfilled.
 * item levels_up_to - If `requires` is fulfilled for the item, the scene will change to the level set here.
 
-Once you've completed your txt files, run `http://localhost:3000/generate` in your browser to regenerate the configuration.
+Once you've completed your txt files, run [http://localhost:3000/generate](http://localhost:3000/generate) in your browser to regenerate the configuration.
 
 ## Ready to deploy as a finished standalone package?
 
