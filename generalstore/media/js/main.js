@@ -70,6 +70,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
   });
 
   body.on('click', function (ev) {
+    var img = body.find('#inventory-notify img');
     var self = $(ev.target);
     var requirement;
     var inventory;
@@ -102,6 +103,8 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
           } else {
             user.giveRequirement(character);
             character.setInventory(inventory, user);
+            img.attr('src', '/media/images/inventory/' + inventory + '.png')
+            img.parent().removeClass('hidden');
           }
 
           if (message.trim().length > 0) {
@@ -115,12 +118,20 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
       case 'item':
         item.active(self[0].id);
         requirement = item.current.requires;
+        inventory = item.current.gives;
 
         user.giveRequirement(item);
 
         if (item.current.levels_up_to > 1 &&
           (!requirement || (requirement && user.hasInventory(requirement)))) {
           item.setLevel(item.current.levels_up_to, user);
+        }
+
+        if (!user.hasCollection(inventory)) {
+          var img = body.find('#inventory-notify img');
+          item.setInventory(inventory, user);
+          img.attr('src', '/media/images/inventory/' + inventory + '.png')
+          img.parent().removeClass('hidden');
         }
 
         if (user.level !== currLevel) {
@@ -138,6 +149,10 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
 
       case 'inventory-hide':
         body.find('#inventory-screen').addClass('hidden');
+        break;
+
+      case 'inventory-notify':
+        body.find('#inventory-notify').addClass('hidden');
         break;
     }
   });

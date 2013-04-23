@@ -20,7 +20,6 @@ app.get('/generate', function (req, res) {
     if (err) {
       throw new Error(err);
     } else {
-      console.log(stories)
       res.render('script.html', { stories: stories });
     }
   });
