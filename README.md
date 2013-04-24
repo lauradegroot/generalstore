@@ -129,6 +129,12 @@ The story properties represent the following:
 
 Once you've completed your txt files, run [http://localhost:3000/generate](http://localhost:3000/generate) in your browser to regenerate the configuration.
 
+## A note about assets
+
+Character and item images can have any file extension (jpg, png, gif) as long as you specify it in your stories/*.txt files.
+
+The only limitation is that inventory assets must have a png extension.
+
 ## Ready to deploy as a finished standalone package?
 
 You only need the contents within generalstore/generalstore (e.g. config/, media/, templates/, main.html).
