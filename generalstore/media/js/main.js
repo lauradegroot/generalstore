@@ -38,7 +38,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
       character.all = currLevel.characters;
 
       title.text(currLevel.location);
-
+      
       // Load initial screen
       utils.loadTemplate('level.html', {
         level: currLevel.level,
