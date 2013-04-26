@@ -125,7 +125,7 @@ The story properties represent the following:
 * item top - Position of the item from the top.
 * item requires - If an inventory object is needed to trigger an item's response (especially if there is a `gives` or `levels_up_to` set), enter it here. Otherwise, write 'false'.
 * item gives - This is what the item provides the player either on initial interaction or if `requires` is fulfilled.
-* item levels_up_to - If `requires` is fulfilled for the item, the scene will change to the level set here.
+* item levels_up_to - If `requires` is fulfilled for the item, the scene will change to the level set here. Otheriwse, write 'false'.
 
 Once you've completed your txt files, run [http://localhost:3000/generate](http://localhost:3000/generate) in your browser to regenerate the configuration.
 
