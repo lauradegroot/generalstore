@@ -52,7 +52,7 @@ define(['../media/js/base/user', '../media/js/base/character'],
 
     it('should give a requirement to a character', function (done) {
       character.requires = 'chair';
-      user.giveRequirement(character);
+      user.giveRequirement(1, character);
       expect(user.hasInventory('chair')).to.equal(false);
       done();
     });

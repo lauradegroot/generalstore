@@ -56,7 +56,7 @@ define([],
     if (level && user.level < level) {
       user.level = level;
       user.save();
-      user.giveRequirement(this);
+      user.giveRequirement(level, this);
       return true;
     }
     return false;
