@@ -60,7 +60,7 @@ a {
 }
 
 .description {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     color: #555;
     font-size: 20px;
     left: -2px;
@@ -212,7 +212,7 @@ a {
 }
 
 #inventory-notify {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.9);
     height: 120px;
     left: 100px;
     padding: 5px;
