@@ -99,7 +99,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         if (!requirement || (requirement && (user.hasInventory(requirement) ||
           user.hasCollection(requirement)))) {
 
-          if (!user.hasInteracted(currLevel.level, character)) {
+          if (inventory && !user.hasInteracted(currLevel.level, character)) {
             img.attr('src', '/media/images/inventory/' + inventory + '.png')
             img.parent().removeClass('hidden');
           }
