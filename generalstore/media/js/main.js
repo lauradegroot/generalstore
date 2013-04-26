@@ -117,6 +117,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
             body.find('#message')
                 .text(message)
                 .addClass('on');
+            message = null;
           }
         }
         break;
