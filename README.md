@@ -129,6 +129,14 @@ The story properties represent the following:
 
 Once you've completed your txt files, run [http://localhost:3000/generate](http://localhost:3000/generate) in your browser to regenerate the configuration.
 
+## Setting up game dimensions
+
+> cd generalstore/config
+
+Edit the `width` and `height` values in defaults.json.
+
+If you don't want level descriptions to display in the game, set `showDescription` to false.
+
 ## A note about assets
 
 Character and item images can have any file extension (jpg, png, gif) as long as you specify it in your stories/*.txt files.
