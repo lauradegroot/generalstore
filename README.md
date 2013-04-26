@@ -4,67 +4,69 @@
 
 A 2D adventure game maker.
 
-## Setup instructions
+## Install for users
 
-Install [node](http://nodejs.org)
+You want to use generalstore to create a game? Here's what you need
+to do:
 
-Clone the repository
+1. Install [node](http://nodejs.org)
+2. Clone the repository
 
-> git clone git://github.com/ednapiranha/generalstore.git
+   > git clone git://github.com/ednapiranha/generalstore.git
 
-> cd generalstore
+   > cd generalstore
 
-> cp local.json-dist local.json
+   > cp local.json-dist local.json
 
-> npm install
+   > npm install
 
-## Setting up nunjucks
+3. Create `generalstore/media/js/local_settings.js` and paste the following:
 
-This will allow you to compile your templates for production
+        define([],
+           function () {
 
-To read more about nunjucks, check out the [documentation](http://nunjucks.jlongster.com)
+           'use strict';
 
-Download nunjucks and add it to `generalstore/media/js/lib/nunjucks.js`
+           return {
+              DEBUG: true
+           };
+        });
 
-If you are on development mode, use [nunjucks-dev.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks-dev.js)
+4. Make sure `generalstore/media/js/templates.js` only has the following:
 
-If you are on production and have precompiled your templates, use [nunjucks.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks.js)
+        define(function() {});
 
-## Precompiling templates for nunjucks
+5. Download [nunjucks.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks.js) and save it to `generalstore/media/js/lib/nunjucks.js`
 
-In development mode, make sure `generalstore/media/js/templates.js` only has the following:
 
-    define(function() {});
+## Install for contributors
 
-In production mode, run the following:
+You want to get set up to hack on generalstore and contribute patches?
+Here's what you need to do:
 
-    node_modules/nunjucks/bin/precompile generalstore/templates > generalstore/media/js/templates.js
+1. Everything in "Install for users"
+2. Download [nunjucks-dev.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks-dev.js) and save it to `generalstore/media/js/lib/nunjucks.js`
 
-## Minifying files with Grunt in production
 
-> node_modules/grunt-cli/bin/grunt
+## Writing stories
 
-## Configure settings
+### Setting up game dimensions
 
-Create `generalstore/media/js/local_settings.js` and paste the following:
+> cd generalstore/config
 
-    define([],
-      function () {
+Edit the `width` and `height` values in defaults.json.
 
-      'use strict';
+If you don't want level descriptions to display in the game, set `showDescription` to false.
 
-      return {
-        DEBUG: true
-      };
-    });
 
-If this is in production mode, change DEBUG to false.
+### Running in development
 
-## Run the development site
+To run the app in development, do:
 
 > node app.js
 
-## Setting up stories
+
+### Setting up stories
 
 > cd stories
 
@@ -129,27 +131,34 @@ The story properties represent the following:
 
 Once you've completed your txt files, run [http://localhost:3000/generate](http://localhost:3000/generate) in your browser to regenerate the configuration.
 
-## Setting up game dimensions
-
-> cd generalstore/config
-
-Edit the `width` and `height` values in defaults.json.
-
-If you don't want level descriptions to display in the game, set `showDescription` to false.
-
 ## A note about assets
 
 Character and item images can have any file extension (jpg, png, gif) as long as you specify it in your stories/*.txt files.
 
 The only limitation is that inventory assets must have a png extension.
 
-## Ready to deploy as a finished standalone package?
+
+## Packaging it up for production
+
+Ready to deploy as a finished standalone package? Then do:
+
+1. Minify files with Grunt in production
+
+   > node_modules/grunt-cli/bin/grunt
+
+2. Change `generalstore/media/js/local_settings.js` DEBUG to false.
+
+3. Run the following to precompile the templates:
+
+   > node_modules/nunjucks/bin/precompile generalstore/templates > generalstore/media/js/templates.js
+
 
 You only need the contents within generalstore/generalstore (e.g. config/, media/, templates/, main.html).
 
 After precompiling nunjucks to templates.js and minifying with grunt, main.html should work as is.
 
 Note that you must run this on some kind of webserver and point to main.html as the default landing page.
+
 
 ## Running tests
 
