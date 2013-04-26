@@ -54,6 +54,8 @@ Here's what you need to do:
 
 > cd generalstore/config
 
+> cp defaults.json-dist defaults.json
+
 Edit the `width` and `height` values in defaults.json.
 
 If you don't want level descriptions to display in the game, set `showDescription` to false.
