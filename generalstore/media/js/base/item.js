@@ -40,7 +40,6 @@ define([],
   Item.prototype.setInventory = function (inventory, user) {
     if (!!inventory && !user.hasInventory(inventory) && !user.hasCollection(inventory)) {
       user.inventory.push(inventory);
-      user.collection.push(inventory);
       user.save();
     }
   };

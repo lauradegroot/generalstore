@@ -91,21 +91,27 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         break;
 
       case 'character':
+        var message;
         character.active(self[0].id);
         requirement = character.current.requires;
         inventory = character.current.gives;
 
-        if (!requirement || (requirement && user.hasInventory(requirement))) {
-          var message = character.current.first_says;
+        if (!requirement || (requirement && (user.hasInventory(requirement) ||
+          user.hasCollection(requirement)))) {
 
-          if (user.hasCollection(inventory)) {
-            message = character.current.finally_says;
-          } else {
-            user.giveRequirement(character);
-            character.setInventory(inventory, user);
+          if (!user.hasInteracted(character)) {
             img.attr('src', '/media/images/inventory/' + inventory + '.png')
             img.parent().removeClass('hidden');
           }
+
+          if (user.hasInteracted(character)) {
+            message = character.current.finally_says;
+          } else {
+            message = character.current.first_says;
+          }
+
+          user.giveRequirement(character);
+          character.setInventory(inventory, user);
 
           if (message.trim().length > 0) {
             body.find('#message')
