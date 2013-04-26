@@ -83,8 +83,8 @@ define([],
    * @param {object} character Character object
    * @returns {boolean}
    */
-  User.prototype.hasInteracted = function (character) {
-    return this.interacted.indexOf(character.current.name) > -1;
+  User.prototype.hasInteracted = function (level, character) {
+    return this.interacted.indexOf(level + '-' + character.current.name) > -1;
   };
 
    /**
@@ -93,12 +93,12 @@ define([],
    * @function
    * @param {object} obj Current character or item
    */
-  User.prototype.giveRequirement = function (obj) {
+  User.prototype.giveRequirement = function (level, obj) {
     var requirement = obj.current.requires;
     var objName = obj.current.name;
 
-    if (!this.hasInteracted(obj)) {
-      this.interacted.push(objName);
+    if (!this.hasInteracted(level, obj)) {
+      this.interacted.push(level + '-' + objName);
     }
 
     if (this.hasInventory(requirement)) {
