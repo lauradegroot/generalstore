@@ -36,7 +36,7 @@ to do:
 
         define(function() {});
 
-5. Download [nunjucks.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks.js) and save it to `generalstore/media/js/lib/nunjucks.js`
+5. Download [nunjucks-dev.js](https://raw.github.com/jlongster/nunjucks/master/browser/nunjucks-dev.js) and save it to `generalstore/media/js/lib/nunjucks.js`
 
 
 ## Install for contributors
@@ -45,7 +45,6 @@ You want to get set up to hack on generalstore and contribute patches?
 Here's what you need to do:
 
 1. Everything in "Install for users"
-2. Download [nunjucks-dev.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks-dev.js) and save it to `generalstore/media/js/lib/nunjucks.js`
 
 
 ## Writing stories
@@ -66,6 +65,13 @@ If you don't want level descriptions to display in the game, set `showDescriptio
 To run the app in development, do:
 
 > node app.js
+
+
+### A note about assets
+
+Character and item images can have any file extension (jpg, png, gif) as long as you specify it in your stories/*.txt files.
+
+The only limitation is that inventory assets must have a png extension.
 
 
 ### Setting up stories
@@ -107,13 +113,19 @@ Edit stories in a text editor with the following format:
 
 All character and item level and name properties are used to generate a unique id. E.g. A level 1 character with the name 'bunny' generates a unique id of 1-bunny.
 
-The story properties represent the following:
+Every story file starts with:
 
 * level - The level that this file represents. You can only have one unique level per file.
 * location - The location name of the level
 * background_image - The image used in the level's main background. If this is a png or gif, replace the extension.
 * description - An optional description of the location; write 'false' as the content if you want it to be empty. You can also configure generalstore/config/defaults.json to never show descriptions.
-* character - Contains the properties for each character. All properties are mandatory.
+
+Story files can contain zero or more characters and items.
+
+**character**
+
+Contains the properties for each character. All properties are mandatory.
+
 * character name - Name of the character.
 * character image - Filename of the character image. Save the file in `generalstore/media/images/characters/`.
 * character left - Position of the character from the left. Set your game dimensions in generalstore/config/defaults.json
@@ -122,7 +134,11 @@ The story properties represent the following:
 * character gives - This is what the character gives to the player after initial interaction. If nothing needs to be given, write 'false'.
 * character first_says - This is what the character first says to the player on initial interaction.
 * character finally_says - This is what the character says on subsequent interactions.
-* item - Contains the properties for each item. All properties are mandatory.
+
+**item**
+
+Contains the properties for each item. All properties are mandatory.
+
 * item name - Name of the item. The level and name generate a uniqud id and this will dobule as your item's image filename.
 * item image - Filename of the item image. Save the file in `generalstore/media/images/items/`.
 * item left - Position of the item from the left.
@@ -131,13 +147,10 @@ The story properties represent the following:
 * item gives - This is what the item provides the player either on initial interaction or if `requires` is fulfilled.
 * item levels_up_to - If `requires` is fulfilled for the item, the scene will change to the level set here. Otheriwse, write 'false'.
 
+
+### Generating files
+
 Once you've completed your txt files, run [http://localhost:3000/generate](http://localhost:3000/generate) in your browser to regenerate the configuration.
-
-## A note about assets
-
-Character and item images can have any file extension (jpg, png, gif) as long as you specify it in your stories/*.txt files.
-
-The only limitation is that inventory assets must have a png extension.
 
 
 ## Packaging it up for production
@@ -153,6 +166,8 @@ Ready to deploy as a finished standalone package? Then do:
 3. Run the following to precompile the templates:
 
    > node_modules/nunjucks/bin/precompile generalstore/templates > generalstore/media/js/templates.js
+
+4. Download [nunjucks.js](https://raw.github.com/jlongster/nunjucks/master/browser/nunjucks.js) and save it to `generalstore/media/js/lib/nunjucks.js`
 
 
 You only need the contents within generalstore/generalstore (e.g. config/, media/, templates/, main.html).
