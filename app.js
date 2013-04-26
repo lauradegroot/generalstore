@@ -25,4 +25,9 @@ app.get('/generate', function (req, res) {
   });
 });
 
-app.listen(process.env.PORT || nconf.get('port'));
+var domain = nconf.get('domain');
+var port = process.env.PORT | nconf.get('port');
+console.log('Listening on ' + domain + ':' + port);
+console.log('To regenerate, go to: ' + domain + ':' + port + '/generate');
+console.log('ctrl-c to quit.')
+app.listen(port);
