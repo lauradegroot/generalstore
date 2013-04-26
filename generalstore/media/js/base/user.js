@@ -9,7 +9,8 @@ define([],
     level: 1,
     items: [],
     inventory: [],
-    collection: []
+    collection: [],
+    interacted: []
   };
 
   /**
@@ -50,6 +51,7 @@ define([],
     this.items = player.items;
     this.inventory = player.inventory;
     this.collection = player.collection;
+    this.interacted = player.interacted;
   };
 
   /**
@@ -74,6 +76,17 @@ define([],
     return this.collection.indexOf(inventory) > -1;
   };
 
+  /**
+   * Checks the player's interaction history for the entire gameplay.
+   * @name User#hasInteracted
+   * @function
+   * @param {object} character Character object
+   * @returns {boolean}
+   */
+  User.prototype.hasInteracted = function (character) {
+    return this.interacted.indexOf(character.current.name) > -1;
+  };
+
    /**
    * Give inventory to character or item
    * @name User#giveRequirement
@@ -82,11 +95,17 @@ define([],
    */
   User.prototype.giveRequirement = function (obj) {
     var requirement = obj.current.requires;
+    var objName = obj.current.name;
+
+    if (!this.hasInteracted(obj)) {
+      this.interacted.push(objName);
+    }
 
     if (this.hasInventory(requirement)) {
+      this.collection.push(requirement);
       this.inventory.splice(this.inventory.indexOf(requirement), 1);
-      this.save();
     }
+    this.save();
   };
 
   /**
@@ -109,6 +128,7 @@ define([],
     this.items = defaults.items;
     this.inventory = defaults.inventory;
     this.collection = defaults.collection;
+    this.interacted = defaults.interacted;
   };
 
   return User;

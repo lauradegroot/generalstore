@@ -4,67 +4,77 @@
 
 A 2D adventure game maker.
 
-## Setup instructions
+## Install for users
 
-Install [node](http://nodejs.org)
+You want to use generalstore to create a game? Here's what you need
+to do:
 
-Clone the repository
+1. Install [node](http://nodejs.org)
+2. Clone the repository
 
-> git clone git://github.com/ednapiranha/generalstore.git
+   > git clone git://github.com/ednapiranha/generalstore.git
 
-> cd generalstore
+   > cd generalstore
 
-> cp local.json-dist local.json
+   > cp local.json-dist local.json
 
-> npm install
+   > npm install
 
-## Setting up nunjucks
+3. Create `generalstore/media/js/local_settings.js` and paste the following:
 
-This will allow you to compile your templates for production
+        define([],
+           function () {
 
-To read more about nunjucks, check out the [documentation](http://nunjucks.jlongster.com)
+           'use strict';
 
-Download nunjucks and add it to `generalstore/media/js/lib/nunjucks.js`
+           return {
+              DEBUG: true
+           };
+        });
 
-If you are on development mode, use [nunjucks-dev.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks-dev.js)
+4. Make sure `generalstore/media/js/templates.js` only has the following:
 
-If you are on production and have precompiled your templates, use [nunjucks.js](https://github.com/jlongster/nunjucks/blob/master/browser/nunjucks.js)
+        define(function() {});
 
-## Precompiling templates for nunjucks
+5. Download [nunjucks-dev.js](https://raw.github.com/jlongster/nunjucks/master/browser/nunjucks-dev.js) and save it to `generalstore/media/js/lib/nunjucks.js`
 
-In development mode, make sure `generalstore/media/js/templates.js` only has the following:
 
-    define(function() {});
+## Install for contributors
 
-In production mode, run the following:
+You want to get set up to hack on generalstore and contribute patches?
+Here's what you need to do:
 
-    node_modules/nunjucks/bin/precompile generalstore/templates > generalstore/media/js/templates.js
+1. Everything in "Install for users"
 
-## Minifying files with Grunt in production
 
-> node_modules/grunt-cli/bin/grunt
+## Writing stories
 
-## Configure settings
+### Setting up game dimensions
 
-Create `generalstore/media/js/local_settings.js` and paste the following:
+> cd generalstore/config
 
-    define([],
-      function () {
+> cp defaults.json-dist defaults.json
 
-      'use strict';
+Edit the `width` and `height` values in defaults.json.
 
-      return {
-        DEBUG: true
-      };
-    });
+If you don't want level descriptions to display in the game, set `showDescription` to false.
 
-If this is in production mode, change DEBUG to false.
 
-## Run the development site
+### Running in development
+
+To run the app in development, do:
 
 > node app.js
 
-## Setting up stories
+
+### A note about assets
+
+Character and item images can have any file extension (jpg, png, gif) as long as you specify it in your stories/*.txt files.
+
+The only limitation is that inventory assets must have a png extension.
+
+
+### Setting up stories
 
 > cd stories
 
@@ -103,13 +113,19 @@ Edit stories in a text editor with the following format:
 
 All character and item level and name properties are used to generate a unique id. E.g. A level 1 character with the name 'bunny' generates a unique id of 1-bunny.
 
-The story properties represent the following:
+Every story file starts with:
 
 * level - The level that this file represents. You can only have one unique level per file.
 * location - The location name of the level
 * background_image - The image used in the level's main background. If this is a png or gif, replace the extension.
 * description - An optional description of the location; write 'false' as the content if you want it to be empty. You can also configure generalstore/config/defaults.json to never show descriptions.
-* character - Contains the properties for each character. All properties are mandatory.
+
+Story files can contain zero or more characters and items.
+
+**character**
+
+Contains the properties for each character. All properties are mandatory.
+
 * character name - Name of the character.
 * character image - Filename of the character image. Save the file in `generalstore/media/images/characters/`.
 * character left - Position of the character from the left. Set your game dimensions in generalstore/config/defaults.json
@@ -118,7 +134,11 @@ The story properties represent the following:
 * character gives - This is what the character gives to the player after initial interaction. If nothing needs to be given, write 'false'.
 * character first_says - This is what the character first says to the player on initial interaction.
 * character finally_says - This is what the character says on subsequent interactions.
-* item - Contains the properties for each item. All properties are mandatory.
+
+**item**
+
+Contains the properties for each item. All properties are mandatory.
+
 * item name - Name of the item. The level and name generate a uniqud id and this will dobule as your item's image filename.
 * item image - Filename of the item image. Save the file in `generalstore/media/images/items/`.
 * item left - Position of the item from the left.
@@ -127,29 +147,35 @@ The story properties represent the following:
 * item gives - This is what the item provides the player either on initial interaction or if `requires` is fulfilled.
 * item levels_up_to - If `requires` is fulfilled for the item, the scene will change to the level set here. Otheriwse, write 'false'.
 
+
+### Generating files
+
 Once you've completed your txt files, run [http://localhost:3000/generate](http://localhost:3000/generate) in your browser to regenerate the configuration.
 
-## Setting up game dimensions
 
-> cd generalstore/config
+## Packaging it up for production
 
-Edit the `width` and `height` values in defaults.json.
+Ready to deploy as a finished standalone package? Then do:
 
-If you don't want level descriptions to display in the game, set `showDescription` to false.
+1. Minify files with Grunt in production
 
-## A note about assets
+   > node_modules/grunt-cli/bin/grunt
 
-Character and item images can have any file extension (jpg, png, gif) as long as you specify it in your stories/*.txt files.
+2. Change `generalstore/media/js/local_settings.js` DEBUG to false.
 
-The only limitation is that inventory assets must have a png extension.
+3. Run the following to precompile the templates:
 
-## Ready to deploy as a finished standalone package?
+   > node_modules/nunjucks/bin/precompile generalstore/templates > generalstore/media/js/templates.js
+
+4. Download [nunjucks.js](https://raw.github.com/jlongster/nunjucks/master/browser/nunjucks.js) and save it to `generalstore/media/js/lib/nunjucks.js`
+
 
 You only need the contents within generalstore/generalstore (e.g. config/, media/, templates/, main.html).
 
 After precompiling nunjucks to templates.js and minifying with grunt, main.html should work as is.
 
 Note that you must run this on some kind of webserver and point to main.html as the default landing page.
+
 
 ## Running tests
 
