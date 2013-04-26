@@ -30,6 +30,22 @@ define([],
   };
 
   /**
+   * Set inventory for player and take inventory from player if item requires
+   * it.
+   * @name Item#setInventory
+   * @function
+   * @param {string} inventory Inventory name
+   * @param {object} user Current player
+   */
+  Item.prototype.setInventory = function (inventory, user) {
+    if (!!inventory && !user.hasInventory(inventory) && !user.hasCollection(inventory)) {
+      user.inventory.push(inventory);
+      user.collection.push(inventory);
+      user.save();
+    }
+  };
+
+  /**
    * Set the user's new level if it is higher than their current level
    * @name Item#setLevel
    * @function
@@ -41,6 +57,7 @@ define([],
     if (level && user.level < level) {
       user.level = level;
       user.save();
+      user.giveRequirement(this);
       return true;
     }
     return false;

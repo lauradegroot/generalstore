@@ -81,7 +81,7 @@ define([],
    * @param {object} obj Current character or item
    */
   User.prototype.giveRequirement = function (obj) {
-    var requirement = obj.requires;
+    var requirement = obj.current.requires;
 
     if (this.hasInventory(requirement)) {
       this.inventory.splice(this.inventory.indexOf(requirement), 1);
