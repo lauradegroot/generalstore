@@ -120,16 +120,14 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         requirement = item.current.requires;
         inventory = item.current.gives;
 
-        user.giveRequirement(item);
-
         if (item.current.levels_up_to > 1 &&
           (!requirement || (requirement && user.hasInventory(requirement)))) {
           item.setLevel(item.current.levels_up_to, user);
         }
 
-        if (!user.hasCollection(inventory)) {
-          var img = body.find('#inventory-notify img');
+        if (inventory) {
           item.setInventory(inventory, user);
+          var img = body.find('#inventory-notify img');
           img.attr('src', '/media/images/inventory/' + inventory + '.png')
           img.parent().removeClass('hidden');
         }
