@@ -3,7 +3,7 @@ define([],
   'use strict';
 
   return {
-    DEBUG: true,
+    DEBUG: false,
     ENV: 'dev'
   };
 });
