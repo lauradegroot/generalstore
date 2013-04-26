@@ -70,7 +70,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
   });
 
   body.on('click', function (ev) {
-    var img = body.find('#inventory-notify img');
+    img = body.find('#inventory-notify img');
     var self = $(ev.target);
     var requirement;
     var inventory;
@@ -100,7 +100,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
           user.hasCollection(requirement)))) {
 
           if (inventory && !user.hasInteracted(currLevel.level, character)) {
-            img.attr('src', '/media/images/inventory/' + inventory + '.png')
+            img.attr('src', '/media/images/inventory/' + inventory + '.png');
             img.parent().removeClass('hidden');
           }
 
@@ -134,7 +134,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         if (inventory) {
           item.setInventory(inventory, user);
           var img = body.find('#inventory-notify img');
-          img.attr('src', '/media/images/inventory/' + inventory + '.png')
+          img.attr('src', '/media/images/inventory/' + inventory + '.png');
           img.parent().removeClass('hidden');
         }
 
