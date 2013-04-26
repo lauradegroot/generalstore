@@ -99,7 +99,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
         if (!requirement || (requirement && (user.hasInventory(requirement) ||
           user.hasCollection(requirement)))) {
 
-          if (!user.hasInteracted(currLevel.level, character)) {
+          if (inventory && !user.hasInteracted(currLevel.level, character)) {
             img.attr('src', '/media/images/inventory/' + inventory + '.png')
             img.parent().removeClass('hidden');
           }
@@ -138,7 +138,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
           img.parent().removeClass('hidden');
         }
 
-        if (user.level !== currLevel) {
+        if (item.current.levels_up_to > 1 && user.level !== currLevel) {
           currLevel = user.level;
           setLevel();
         }
