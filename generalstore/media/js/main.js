@@ -138,7 +138,7 @@ define(['jquery', 'local_settings', 'base/user', 'base/character', 'base/item', 
           img.parent().removeClass('hidden');
         }
 
-        if (user.level !== currLevel) {
+        if (item.current.levels_up_to > 1 && user.level !== currLevel) {
           currLevel = user.level;
           setLevel();
         }
